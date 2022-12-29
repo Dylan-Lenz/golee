@@ -6,6 +6,9 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import CurrentGoalPage from "./pages/CurrentGoalPage/CurrentGoalPage";
+import AddGoalPage from "./pages/AddGoalPage/AddGoalPage";
+import PastGoalPage from "./pages/PastGoalPage/PastGoalPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -19,9 +22,12 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/current" element={<PrivateRoute><CurrentGoalPage /></PrivateRoute>} />
+        <Route path="/add" element={<PrivateRoute><AddGoalPage /></PrivateRoute>} />
+        <Route path="/past" element={<PrivateRoute><PastGoalPage /></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>

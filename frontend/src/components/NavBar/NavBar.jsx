@@ -10,10 +10,31 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
-        <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
-          </Link>
+        <li className="navButtons">
+          {user ? (
+            <li>
+              <Link to="/" > <b>HOME</b> </Link>
+              <Link to="/current" > <b>CURRENT</b> </Link>
+              <Link to="/add" > <b>ADD</b> </Link>
+              <Link to="/past" > <b>PAST</b> </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/" > <b>HOME</b> </Link>
+            </li>
+          )}
+        </li>
+        <li className="navHeader">
+          <h1>
+          <Link to="/" > <b>golee</b> </Link>
+          </h1>
+        </li>
+        <li className="navUsers">
+          {user ? (
+            <p>{user.username}</p>
+          ) : (
+            <button onClick={() => navigate("/register")}>Register</button>
+          )}
         </li>
         <li>
           {user ? (
@@ -28,3 +49,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+      
