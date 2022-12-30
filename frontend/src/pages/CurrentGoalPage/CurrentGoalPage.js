@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import Chart from "../../components/Chart/Chart";
 
 
 const CurrentGoalPage = () => {
@@ -32,6 +33,9 @@ const CurrentGoalPage = () => {
             {goals.goal_name}
           </p>
         ))}
+      <div>
+        <Chart />
+      </div>
     </div>
   );
 };
