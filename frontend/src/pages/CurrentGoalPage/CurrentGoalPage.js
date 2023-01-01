@@ -15,10 +15,10 @@ const CurrentGoalPage = () => {
             <Chart />
           </li>
           <li>
-            <Timer  />
+            <Timer />
           </li>
         </ul>
-    </div>
+        </div>
   );
 };
 
