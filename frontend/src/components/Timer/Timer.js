@@ -38,8 +38,8 @@ export default class Timer extends React.Component {
     if(timeRemaining > 0) {
       const start_date = new Date(startDate);
       const end_date = new Date(endDate);
-      const start_millis = start_date.getTime(); // Get timestamp of start date
-      const end_millis = end_date.getTime(); // Get timestamp of end date
+      const start_millis = start_date.getTime();
+      const end_millis = end_date.getTime();
       const old_sec = start_millis / 1000;
       const current_sec = end_millis / 1000;
 
@@ -110,7 +110,7 @@ export default class Timer extends React.Component {
               type="button"
               onClick={this.calculateCountdown}
             >
-              Begin Countdown
+              Set Timer
             </Button>
           </Form>
         </div>

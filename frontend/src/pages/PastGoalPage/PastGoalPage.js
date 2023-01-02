@@ -23,6 +23,7 @@ const PastGoalPage = () => {
     };
     fetchGoals();
   }, [token]);
+  
   return (
     <div className="container">
       <h1>PAST GOAL</h1>

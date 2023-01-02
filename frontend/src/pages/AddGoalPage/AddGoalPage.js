@@ -1,39 +1,16 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import GoalForm from '../../components/GoalForm/GoalForm';
 
 
-const AddGoalPage = () => {
-  const [user, token] = useAuth();
-  const [goals, setGoals] = useState([]);
+function AddGoalPage() {
 
-  useEffect(() => {
-    const fetchGoals = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/user/goals/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setGoals(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
-    fetchGoals();
-  }, [token]);
   return (
-    <div className="container">
-      <h1>ADD GOAL</h1>
-      {goals &&
-        goals.map((goals) => (
-          <p key={goals.id}>
-            {goals.goal_name}
-          </p>
-        ))}
-    </div>
+    <Container>     
+      <GoalForm />    
+    </Container>
   );
-};
+}
 
 export default AddGoalPage;

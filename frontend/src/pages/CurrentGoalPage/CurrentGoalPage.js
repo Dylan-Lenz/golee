@@ -4,11 +4,9 @@ import Timer from "../../components/Timer/Timer";
 
 
 const CurrentGoalPage = () => {
-
-
   
   return (
-    <div className="container">
+    <div >
       <h1>CURRENT GOAL</h1>
       <ul className="chartTime">
           <li>
@@ -18,7 +16,7 @@ const CurrentGoalPage = () => {
             <Timer />
           </li>
         </ul>
-        </div>
+    </div>
   );
 };
 

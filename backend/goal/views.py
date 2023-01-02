@@ -9,7 +9,7 @@ from goal.models import Goal
 
 @api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def goals(request, pk):
+def goals(request):
     if request.method == 'GET':
         goals = Goal.objects.filter(user_id=request.user.id)
         serializer = GoalSerializer(goals, many=True)
@@ -20,8 +20,4 @@ def goals(request, pk):
             serializer.save(user_id=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        goal = Goal.objects.filter(pk=pk)
-        serializer = GoalSerializer(goal, many=True)
-        goal.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+   
