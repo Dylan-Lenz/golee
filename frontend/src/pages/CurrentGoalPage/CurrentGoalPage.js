@@ -1,5 +1,5 @@
 import React from "react";
-import Chart from "../../components/Chart/Chart";
+import RenderChart from "../../components/Chart/Chart";
 import Timer from "../../components/Timer/Timer";
 
 
@@ -10,7 +10,7 @@ const CurrentGoalPage = () => {
       <h1>CURRENT GOAL</h1>
       <ul className="chartTime">
           <li>
-            <Chart />
+            <RenderChart />
           </li>
           <li>
             <Timer />
