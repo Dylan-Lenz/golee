@@ -6,54 +6,62 @@ import {
 } from 'react-jsx-highcharts';
 
 
-
-
 export default function RenderChart () {
 
-  const [influenceValue, setInfluenceValue] = useState([0]);
-  const [timeValue, setTimeValue] = useState([0]);
-  let time = [...timeValue, timeValue];
-  let influence = [...influenceValue, influenceValue];
-  let data = [time, influence];
+  const [timeValue, setTimeValue] = useState([]);
+  const [influenceValue, setInfluenceValue] = useState([]);
+  const [inputData, setInputData] = useState([]);
+  
+  let dataDict = [...inputData, inputData];
+  
+  let rawData = {
+    x: [+timeValue],
+    y: [+influenceValue],
+  }
 
   const handleIncrementData = (e) => {
     e.preventDefault();
-    setInfluenceValue((influenceValue + 1)); 
-    setTimeValue((timeValue + 1));
+    setTimeValue(+timeValue + 1);
+    setInfluenceValue(+influenceValue + 1);
   }
 
-  const handleSameData = (e) => {
+  const handleNoChangeData = (e) => {
     e.preventDefault();
-    setInfluenceValue((influence + 0)); 
-    setTimeValue((time + 1));
+    setTimeValue(+timeValue + 1);
+    setInfluenceValue(+influenceValue + 0);
   }
 
   const handleDecrementData = (e) => {
     e.preventDefault();
-    setInfluenceValue((influence - 1)); 
-    setTimeValue((time + 1));
+    setTimeValue(+timeValue + 1);
+    setInfluenceValue(+influenceValue - 1);
   }
 
-  const handleResetChart = (e) => {
+  const handleResetData = (e) => {
     e.preventDefault();
-    setInfluenceValue([0]); 
-    setTimeValue([0]);
+    setTimeValue([]);
+    setInfluenceValue([]); 
   }
-  
+
   const Chart1 = () => (
-    <div >
+    <div>
       <HighchartsProvider Highcharts={Highcharts}>
-        <HighchartsChart >
-          <Chart />
+        <HighchartsChart>
+          <Chart/>
           <Title>GOAL</Title>
-          <Legend layout="horizontal" align="center" verticalAlign="top" />
-          <XAxis categories={time}>
+            <Legend 
+              layout="horizontal" 
+              align="center" 
+              verticalAlign="top" 
+            />
+          <XAxis 
+            categories={rawData.x}>
           </XAxis>
           <YAxis>
-              <LineSeries 
-                name= 'Influence' 
-                data={data} 
-              />
+            <LineSeries 
+              name= 'Influence' 
+              data= {rawData.y}
+            />
           </YAxis>
         </HighchartsChart>
       </HighchartsProvider>
@@ -63,12 +71,12 @@ export default function RenderChart () {
   return (
     <div>
       <div>
-          <Chart1 />                   
+          <Chart1/>                   
             <p>Influence</p>          
             <button onClick={handleIncrementData}>Better</button>
-            <button onClick={handleSameData}>Same</button>
+            <button onClick={handleNoChangeData}>Same</button>
             <button onClick={handleDecrementData}>Worse</button>            
-            <button onClick={handleResetChart}>Reset</button>            
+            <button onClick={handleResetData}>Reset</button>            
             <button>Save</button>                   
       </div>
     </div>
