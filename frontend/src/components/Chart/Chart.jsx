@@ -4,25 +4,24 @@ import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
 
-
 export default function RenderChart () {
 
-  const [influence, setInfluence] = useState([0]);
-  const yPts = [...influence];
+  const [value, setValue] = useState([0]);
+  const values = [...value];
 
   const Better = () => {
-    let better = (+influence + 1);
-    setInfluence((influence) => [...influence, better]);
+    let better = [(+value + 1)];
+    return setValue(() => [values, better]);
   }
 
   const Same = () => {
-    let same = (+influence + 0);
-    setInfluence((influence) => [...influence, same]);
+    let same = [(+value + 0)];
+    return setValue(() => [values, same]);
   }
 
   const Worse = () => {
-    let worse = (+influence - 1);
-    setInfluence((influence) => [...influence, worse]);
+    let worse = [(+value - 1)];
+    return setValue(() => [values, worse]);
   }
 
   const handleIncrement = (e) => {
@@ -42,7 +41,7 @@ export default function RenderChart () {
 
   const handleReset = (e) => {
     e.preventDefault();
-    setInfluence([0]);
+    setValue([0]);
   }
 
   const Chart1 = () => (
@@ -56,12 +55,11 @@ export default function RenderChart () {
               align="center" 
               verticalAlign="top" 
             />
-          <XAxis>
-          </XAxis>
+          <XAxis></XAxis>
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data={[...yPts]}
+              data={[...values]}
             />
           </YAxis>
         </HighchartsChart>
