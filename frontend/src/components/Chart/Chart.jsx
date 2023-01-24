@@ -7,77 +7,53 @@ import {
 
 export default function RenderChart () {
 
-  const [time, setTime] = useState([]);
-  const [influence, setInfluence] = useState([]);
-  const [object, setObject] = useState({});
-  const [array, setArray] = useState([]);
+  const [time, setTime] = useState([0]);
+  const [influence, setInfluence] = useState([0]);
+  const xPts = time;
+  const yPts = influence;
 
-  const plotPts = {...array};
-
-  const AddNewObject = () => {
-    let newObj = {
-      x: [time],
-      y: [influence],
-    };
-    setObject(newObj);
-    AddObjectToArray();
+  const Time = () => {
+    let newTime= (+time + 1);
+    setTime((time) => [...time, newTime]);
   }
 
-  const AddObjectToArray = (obj) => {
-    let newArr = {...object, obj};
-    setArray(newArr);
+  const Better = () => {
+    let better = (+influence + 1);
+    setInfluence((influence) => [...influence, better]);
   }
 
-  const AddTime = () => {
-    let addTime = (+time + 1);
-    let newTime = {...time, addTime};
-    return newTime;
+  const Same = () => {
+    let same = (+influence + 0);
+    setInfluence((influence) => [...influence, same]);
   }
 
-  const BetterInfluence = () => {
-    let addInfluence = (+influence + 1);
-    let newInfluence = {...influence, addInfluence};
-    return newInfluence;
-  }
-
-  const SameInfluence = () => {
-    let sameInfluence = (+influence + 0);
-    let newInfluence = {...influence, sameInfluence};
-    return newInfluence;
-  }
-
-  const WorseInfluence = () => {
-    let worseInfluence = (+influence - 1);
-    let newInfluence = {...influence, worseInfluence};
-    return newInfluence;
+  const Worse = () => {
+    let worse = (+influence - 1);
+    setInfluence((influence) => [...influence, worse]);
   }
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    setTime(AddTime);
-    setInfluence(BetterInfluence);
-    AddNewObject();
+    Time();
+    Better();
   }
 
   const handleNoChange = (e) => {
     e.preventDefault();
-    setTime(AddTime);
-    setInfluence(SameInfluence);
-    AddNewObject();
+    Time();
+    Same();
   }
 
   const handleDecrement = (e) => {
     e.preventDefault();
-    setTime(AddTime);
-    setInfluence(WorseInfluence);
-    AddNewObject();
+    Time();
+    Worse();
   }
 
   const handleReset = (e) => {
     e.preventDefault();
-    setTime(0);
-    setInfluence(0);
-    AddNewObject();
+    setTime([0]);
+    setInfluence([0]);
   }
 
   const Chart1 = () => (
@@ -92,12 +68,12 @@ export default function RenderChart () {
               verticalAlign="top" 
             />
           <XAxis 
-            categories={plotPts.x}>
+            categories={xPts}>
           </XAxis>
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data={plotPts.y}
+              data={yPts}
             />
           </YAxis>
         </HighchartsChart>
