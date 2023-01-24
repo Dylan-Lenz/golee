@@ -7,15 +7,8 @@ import {
 
 export default function RenderChart () {
 
-  const [time, setTime] = useState([0]);
   const [influence, setInfluence] = useState([0]);
-  const xPts = time;
-  const yPts = influence;
-
-  const Time = () => {
-    let newTime= (+time + 1);
-    setTime((time) => [...time, newTime]);
-  }
+  const yPts = [...influence];
 
   const Better = () => {
     let better = (+influence + 1);
@@ -34,25 +27,21 @@ export default function RenderChart () {
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    Time();
     Better();
   }
 
   const handleNoChange = (e) => {
     e.preventDefault();
-    Time();
     Same();
   }
 
   const handleDecrement = (e) => {
     e.preventDefault();
-    Time();
     Worse();
   }
 
   const handleReset = (e) => {
     e.preventDefault();
-    setTime([0]);
     setInfluence([0]);
   }
 
@@ -67,13 +56,12 @@ export default function RenderChart () {
               align="center" 
               verticalAlign="top" 
             />
-          <XAxis 
-            categories={xPts}>
+          <XAxis>
           </XAxis>
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data={yPts}
+              data={[...yPts]}
             />
           </YAxis>
         </HighchartsChart>
