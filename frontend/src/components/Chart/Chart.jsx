@@ -1,46 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Highcharts from 'highcharts/highstock';
-import HighchartsReact from 'highcharts-react-official';
 import {
-  HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Subtitle, Legend, LineSeries
+  HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
 
 
 export default function RenderChart () {
 
-  const [timeValue, setTimeValue] = useState([]);
-  const [influenceValue, setInfluenceValue] = useState([]);
-  const [inputData, setInputData] = useState([]);
-  
-  let dataDict = [...inputData, inputData];
-  
-  let rawData = {
-    x: [+timeValue],
-    y: [+influenceValue],
+  const [time, setTime] = useState([]);
+  const [influence, setInfluence] = useState([]);
+  const [object, setObject] = useState({});
+  const [array, setArray] = useState([]);
+
+  const plotPts = {...array};
+
+  const AddNewObject = () => {
+    let newObj = {
+      x: [time],
+      y: [influence],
+    };
+    setObject(newObj);
+    AddObjectToArray();
   }
 
-  const handleIncrementData = (e) => {
-    e.preventDefault();
-    setTimeValue(+timeValue + 1);
-    setInfluenceValue(+influenceValue + 1);
+  const AddObjectToArray = (obj) => {
+    let newArr = {...object, obj};
+    setArray(newArr);
   }
 
-  const handleNoChangeData = (e) => {
-    e.preventDefault();
-    setTimeValue(+timeValue + 1);
-    setInfluenceValue(+influenceValue + 0);
+  const AddTime = () => {
+    let addTime = (+time + 1);
+    let newTime = {...time, addTime};
+    return newTime;
   }
 
-  const handleDecrementData = (e) => {
-    e.preventDefault();
-    setTimeValue(+timeValue + 1);
-    setInfluenceValue(+influenceValue - 1);
+  const BetterInfluence = () => {
+    let addInfluence = (+influence + 1);
+    let newInfluence = {...influence, addInfluence};
+    return newInfluence;
   }
 
-  const handleResetData = (e) => {
+  const SameInfluence = () => {
+    let sameInfluence = (+influence + 0);
+    let newInfluence = {...influence, sameInfluence};
+    return newInfluence;
+  }
+
+  const WorseInfluence = () => {
+    let worseInfluence = (+influence - 1);
+    let newInfluence = {...influence, worseInfluence};
+    return newInfluence;
+  }
+
+  const handleIncrement = (e) => {
     e.preventDefault();
-    setTimeValue([]);
-    setInfluenceValue([]); 
+    setTime(AddTime);
+    setInfluence(BetterInfluence);
+    AddNewObject();
+  }
+
+  const handleNoChange = (e) => {
+    e.preventDefault();
+    setTime(AddTime);
+    setInfluence(SameInfluence);
+    AddNewObject();
+  }
+
+  const handleDecrement = (e) => {
+    e.preventDefault();
+    setTime(AddTime);
+    setInfluence(WorseInfluence);
+    AddNewObject();
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setTime(0);
+    setInfluence(0);
+    AddNewObject();
   }
 
   const Chart1 = () => (
@@ -55,12 +92,12 @@ export default function RenderChart () {
               verticalAlign="top" 
             />
           <XAxis 
-            categories={rawData.x}>
+            categories={plotPts.x}>
           </XAxis>
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data= {rawData.y}
+              data={plotPts.y}
             />
           </YAxis>
         </HighchartsChart>
@@ -73,10 +110,10 @@ export default function RenderChart () {
       <div>
           <Chart1/>                   
             <p>Influence</p>          
-            <button onClick={handleIncrementData}>Better</button>
-            <button onClick={handleNoChangeData}>Same</button>
-            <button onClick={handleDecrementData}>Worse</button>            
-            <button onClick={handleResetData}>Reset</button>            
+            <button onClick={handleIncrement}>Better</button>
+            <button onClick={handleNoChange}>Same</button>
+            <button onClick={handleDecrement}>Worse</button>            
+            <button onClick={handleReset}>Reset</button>            
             <button>Save</button>                   
       </div>
     </div>

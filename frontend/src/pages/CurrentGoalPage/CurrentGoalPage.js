@@ -1,5 +1,6 @@
 import React from "react";
 import RenderChart from "../../components/Chart/Chart";
+// import RenderChart from "../../components/Chart/ChartV2.jsx";
 import Timer from "../../components/Timer/Timer";
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
@@ -9,10 +9,6 @@ const GoalForm = () => {
     const [influence, setInfluence] = useState("");
     const [goalName, setGoalName] = useState("");
     const [goal, setGoal] = useState("");
-
-    // useEffect(() => {
-    //     postGoal(goal);
-    // }, [token]);
 
     const postGoal = async (goal) => {
         try {
