@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts/highstock';
 import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
 
 export default function RenderChart () {
-
+  
   const [value, setValue] = useState([0]);
+  const [array, setArray] = useState([0]);
+
+  useEffect(() => {
+    let valueToArray = values;
+    setArray(valueToArray);
+  }, [value]);
+
   const values = [...value];
+  const arrays = [...array];
 
   const Better = () => {
     let better = [(+value + 1)];
-    return setValue(() => [values, better]);
+    return setValue(() => [values, better])
   }
 
   const Same = () => {
     let same = [(+value + 0)];
-    return setValue(() => [values, same]);
+    return setValue(() => [values, same])
   }
 
   const Worse = () => {
     let worse = [(+value - 1)];
-    return setValue(() => [values, worse]);
+    return setValue(() => [values, worse])
   }
 
   const handleIncrement = (e) => {
@@ -39,9 +47,9 @@ export default function RenderChart () {
     Worse();
   }
 
-  const handleReset = (e) => {
-    e.preventDefault();
+  const handleReset = () => {
     setValue([0]);
+    setArray([0]);
   }
 
   const Chart1 = () => (
@@ -59,7 +67,7 @@ export default function RenderChart () {
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data={[...values]}
+              data={[...arrays]}
             />
           </YAxis>
         </HighchartsChart>
