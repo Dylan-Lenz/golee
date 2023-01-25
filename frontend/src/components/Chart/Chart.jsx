@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Highcharts from 'highcharts/highstock';
 import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
@@ -6,57 +6,44 @@ import {
 
 export default function RenderChart () {
   
-  const [time, setTime] = useState([0]);
-  const [value, setValue] = useState([0]);
-  const [array, setArray] = useState([]);
-  const arrays = [...array];
+  const [arr, setArr] = useState([0]);
+  let val = arr[arr.length-1];
 
-  useEffect(() => {
-    setArray([...value]);
-  }, [value]);
-
-  const NewTime = () => {
-    let newTime = [(+time + 1)];
-    setTime(() => [newTime]);
+  const Increment = () => {
+    let newVal = (val + 1);
+    arr.push(newVal);
+    setArr([...arr]);
   }
 
-  const BetterValue = () => {
-    NewTime();
-    let newValue = [(+value + 1)];
-    setValue(() => [time, newValue]);
+  const NoChange = () => {
+    arr.push(val);
+    setArr([...arr]);
   }
 
-  const SameValue = () => {
-    NewTime();
-    setValue(() => [time, value]);
+  const Decrement = () => {
+    let newVal = (val - 1);
+    arr.push(newVal);
+    setArr([...arr]);
   }
 
-  const WorseValue = () => {
-    NewTime();
-    let newValue = [(+value - 1)];
-    setValue(() => [time, newValue]);
-  }
-
-  const handleIncrement = (e) => {
+  const handInc = (e) => {
     e.preventDefault();
-    BetterValue();
+    Increment();
   }
 
-  const handleNoChange = (e) => {
+  const handNC = (e) => {
     e.preventDefault();
-    SameValue();
+    NoChange();
   }
 
-  const handleDecrement = (e) => {
+  const handDec = (e) => {
     e.preventDefault();
-    WorseValue();
+    Decrement();
   }
 
   const handleReset = (e) => {
     e.preventDefault();
-    setTime([0]);
-    setValue([0]);
-    setArray([]);
+    setArr([0]);
   }
 
   const Chart1 = () => (
@@ -74,7 +61,7 @@ export default function RenderChart () {
           <YAxis>
             <LineSeries 
               name= 'Influence' 
-              data={[...arrays]}
+              data={arr}
             />
           </YAxis>
         </HighchartsChart>
@@ -87,9 +74,9 @@ export default function RenderChart () {
       <div>
           <Chart1/>                   
             <p>Influence</p>          
-            <button onClick={handleIncrement}>Better</button>
-            <button onClick={handleNoChange}>Same</button>
-            <button onClick={handleDecrement}>Worse</button>            
+            <button onClick={handInc}>Better</button>
+            <button onClick={handNC}>Same</button>
+            <button onClick={handDec}>Worse</button>            
             <button onClick={handleReset}>Reset</button>            
             <button>Save</button>                   
       </div>
