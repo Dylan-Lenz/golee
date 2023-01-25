@@ -6,30 +6,36 @@ import {
 
 export default function RenderChart () {
   
+  const [time, setTime] = useState([0]);
   const [value, setValue] = useState([0]);
-  const [array, setArray] = useState([0]);
-
-  useEffect(() => {
-    let valueToArray = values;
-    setArray(valueToArray);
-  }, [value]);
-
-  const values = [...value];
+  const [array, setArray] = useState([]);
   const arrays = [...array];
 
+  useEffect(() => {
+    setArray([...value]);
+  }, [value]);
+
+  const NewTime = () => {
+    let newTime = [(+time + 1)];
+    return setTime(() => [newTime]);
+  }
+
   const Better = () => {
-    let better = [(+value + 1)];
-    return setValue(() => [values, better])
+    NewTime();
+    let newValue = [(+value + 1)];
+    return setValue(() => [time, newValue]);
   }
 
   const Same = () => {
-    let same = [(+value + 0)];
-    return setValue(() => [values, same])
+    NewTime();
+    let newValue = [(+value + 0)];
+    return setValue(() => [time, newValue]);
   }
 
   const Worse = () => {
-    let worse = [(+value - 1)];
-    return setValue(() => [values, worse])
+    NewTime();
+    let newValue = [(+value - 1)];
+    return setValue(() => [time, newValue]);
   }
 
   const handleIncrement = (e) => {
@@ -47,9 +53,11 @@ export default function RenderChart () {
     Worse();
   }
 
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault();
+    setTime([0]);
     setValue([0]);
-    setArray([0]);
+    setArray([]);
   }
 
   const Chart1 = () => (
