@@ -17,40 +17,39 @@ export default function RenderChart () {
 
   const NewTime = () => {
     let newTime = [(+time + 1)];
-    return setTime(() => [newTime]);
+    setTime(() => [newTime]);
   }
 
-  const Better = () => {
+  const BetterValue = () => {
     NewTime();
     let newValue = [(+value + 1)];
-    return setValue(() => [time, newValue]);
+    setValue(() => [time, newValue]);
   }
 
-  const Same = () => {
+  const SameValue = () => {
     NewTime();
-    let newValue = [(+value + 0)];
-    return setValue(() => [time, newValue]);
+    setValue(() => [time, value]);
   }
 
-  const Worse = () => {
+  const WorseValue = () => {
     NewTime();
     let newValue = [(+value - 1)];
-    return setValue(() => [time, newValue]);
+    setValue(() => [time, newValue]);
   }
 
   const handleIncrement = (e) => {
     e.preventDefault();
-    Better();
+    BetterValue();
   }
 
   const handleNoChange = (e) => {
     e.preventDefault();
-    Same();
+    SameValue();
   }
 
   const handleDecrement = (e) => {
     e.preventDefault();
-    Worse();
+    WorseValue();
   }
 
   const handleReset = (e) => {
