@@ -4,6 +4,7 @@ import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
 import '../Chart/Chart.css';
+import { exportMultipleChartsToPdf } from "../../utils/utils";
 
 export default function RenderChart () {
   
@@ -80,7 +81,7 @@ export default function RenderChart () {
             <button onClick={handNC}>Same</button>
             <button onClick={handDec}>Worse</button>            
             <button onClick={handleReset}>Reset</button>            
-            <button>Save</button>                   
+            <button onClick={exportMultipleChartsToPdf}>Save</button>                   
       </div>
     </div>
   )

@@ -1,7 +1,3 @@
-
-
-
-
 export async function exportMultipleChartsToPdf() {
     const doc = new jsPDF("p", "px"); // (1)
   
