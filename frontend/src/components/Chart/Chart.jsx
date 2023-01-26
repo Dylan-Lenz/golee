@@ -3,6 +3,7 @@ import Highcharts from 'highcharts/highstock';
 import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
+import '../Chart/Chart.css';
 
 export default function RenderChart () {
   
@@ -49,7 +50,7 @@ export default function RenderChart () {
   const Chart1 = () => (
     <div>
       <HighchartsProvider Highcharts={Highcharts}>
-        <HighchartsChart>
+        <HighchartsChart styledMode>
           <Chart/>
           <Title>GOAL</Title>
             <Legend 
@@ -60,7 +61,8 @@ export default function RenderChart () {
           <XAxis></XAxis>
           <YAxis>
             <LineSeries 
-              name= 'Influence' 
+              name= 'Influence'
+              className='series'
               data={arr}
             />
           </YAxis>
