@@ -10,7 +10,6 @@ import '../Chart/Chart.css';
 export default function RenderChart () {
   
   const [arr, setArr] = useState([0]);
-  const [img, setImg] = useState([])
   let val = arr[arr.length-1];
 
   const handIncrement = (e) => {
@@ -31,18 +30,6 @@ export default function RenderChart () {
     let newVal = (val - 1);
     arr.push(newVal);
     setArr([...arr]);
-  }
-
-  const handleReset = (e) => {
-    e.preventDefault();
-    setArr([0]);
-  }
-
-  const handChartToPdf = (e) => {
-    e.preventDefault();
-    const doc = new jsPDF(Charted);
-    const img = htmlToImage.toPng(doc);
-    return doc.setImg(img, "PNG");
   }
 
   const Charted = () => (
