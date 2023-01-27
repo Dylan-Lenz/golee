@@ -1,0 +1,13 @@
+
+.setgoal-title {
+    color: #7BAEB7;
+    background-color: #324B4F;
+    border-radius: 5px;  
+    text-align: center;
+}
+
+.form-control {
+    color: #7BAEB7;
+    background-color: #324B4F;
+    margin-bottom: .5em;
+}

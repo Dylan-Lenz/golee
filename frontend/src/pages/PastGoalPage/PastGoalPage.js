@@ -26,11 +26,12 @@ const PastGoalPage = () => {
   
   return (
     <div className="container">
-      <h1>PAST GOAL</h1>
+      <h1>PAST GOALS</h1>
       {goals &&
         goals.map((goals) => (
           <p key={goals.id}>
-            {goals.goal_name}
+            <p>{goals.goal_name}</p>
+            <p>{goals.influence_name}</p>
           </p>
         ))}
     </div>

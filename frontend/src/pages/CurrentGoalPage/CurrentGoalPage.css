@@ -1,8 +1,39 @@
 
-.goalPage {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
+.goalPage-hdr {
+    border: 2px solid #7BAEB7;
+    text-align: center;
+    color: #7BAEB7;
+    background-color: #324B4F;
+    border-radius: 5px; 
+    padding: 0.25em;
+    margin:1em;
+    opacity: 0.8;
+}
+
+.container {
+    z-index: 0;
+    background-color: transparent;
+    border-radius: 5px;
+    padding:.5em; 
+}
+
+.goalPage-d-chrt {
+    z-index: 1;
+    /* position: absolute; */
+    opacity: 0.9;
+    /* resize: both; */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%);
+    object-fit: cover; */
+}
+
+.goalPage-frm {
+    z-index: 2;
+    opacity: 0.9;
+}
+
+.goalPage-tmr {
+    z-index: 2;
+    opacity: 0.9;
 }

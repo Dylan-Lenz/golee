@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import DateTimePicker from "react-datetime-picker";
+import '../Timer/Timer.css';
 
 
 export default class Timer extends React.Component {
@@ -75,28 +76,25 @@ export default class Timer extends React.Component {
     const convertedSeconds = this.getTwoDigitValue(seconds);
 
     return (
-      <div>
-        {<h1>Timer</h1>}
-          {errorMsg && <p className="error-msg">{errorMsg}</p>}
+      <div className="container">
         <div className="counter">
-          <div className="time">
-              <h2 className="time-label">Days</h2>
-              <div className="time-value">{convertedDays}</div>
-          </div>
-          <div className="time">
-          <h3 className="time-label">Hrs</h3>
-          <div className="time-value">{convertedHours}</div>
-          </div>
-          <div className="time">
-              <h4 className="time-label">Mins</h4>
-              <div className="time-value">{convertedMins}</div>
-          </div>
-          <div className="time">
-              <h5 className="time-label">Secs</h5>
-              <div className="time-value">{convertedSeconds}</div>
-          </div>
-      </div>
-      <div className="date-time-form">
+          <h3>TIME</h3>
+          <ul className="counter-label">
+            <li>
+              <h5 className="counter-day-label">Days: {convertedDays}&nbsp;</h5> 
+            </li>
+            <li>
+              <h5 className="counter-hour-label">Hrs: {convertedHours}&nbsp;</h5>
+            </li>
+            <li> 
+              <h5 className="counter-minute-label">Mins: {convertedMins}&nbsp;</h5>
+            </li>
+            <li>
+              <h5 className="counter-second-label">Secs: {convertedSeconds}&nbsp;</h5> 
+            </li>
+          </ul>
+        </div>
+      <div className="counter-datetime">
           <Form>
             <Form.Group controlId="end_date">
               <DateTimePicker
@@ -105,13 +103,13 @@ export default class Timer extends React.Component {
                 value={this.state.endDate}
               />
             </Form.Group>
-            <Button
+            <button
+              className="counter-button"
               variant="primary"
               type="button"
               onClick={this.calculateCountdown}
-            >
-              Set Timer
-            </Button>
+              >Set Time
+            </button>
           </Form>
         </div>
       </div>

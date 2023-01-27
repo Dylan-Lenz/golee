@@ -1,46 +1,36 @@
 import React, { useState } from 'react';
+import jsPDF from "../../../package.json";
+import htmlToImage from "../../../package.json";
 import Highcharts from 'highcharts/highstock';
 import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
 } from 'react-jsx-highcharts';
 import '../Chart/Chart.css';
-import { exportMultipleChartsToPdf } from "../../utils/utils";
 
 export default function RenderChart () {
   
   const [arr, setArr] = useState([0]);
+  const [img, setImg] = useState([])
   let val = arr[arr.length-1];
 
-  const Increment = () => {
+  const handIncrement = (e) => {
+    e.preventDefault();
     let newVal = (val + 1);
     arr.push(newVal);
     setArr([...arr]);
   }
 
-  const NoChange = () => {
+  const handNoChange = (e) => {
+    e.preventDefault();
     arr.push(val);
     setArr([...arr]);
   }
 
-  const Decrement = () => {
+  const handDecrement = (e) => {
+    e.preventDefault();
     let newVal = (val - 1);
     arr.push(newVal);
     setArr([...arr]);
-  }
-
-  const handInc = (e) => {
-    e.preventDefault();
-    Increment();
-  }
-
-  const handNC = (e) => {
-    e.preventDefault();
-    NoChange();
-  }
-
-  const handDec = (e) => {
-    e.preventDefault();
-    Decrement();
   }
 
   const handleReset = (e) => {
@@ -48,7 +38,14 @@ export default function RenderChart () {
     setArr([0]);
   }
 
-  const Chart1 = () => (
+  const handChartToPdf = (e) => {
+    e.preventDefault();
+    const doc = new jsPDF(Charted);
+    const img = htmlToImage.toPng(doc);
+    return doc.setImg(img, "PNG");
+  }
+
+  const Charted = () => (
     <div>
       <HighchartsProvider Highcharts={Highcharts}>
         <HighchartsChart styledMode>
@@ -63,7 +60,6 @@ export default function RenderChart () {
           <YAxis>
             <LineSeries 
               name= 'Influence'
-              className='series'
               data={arr}
             />
           </YAxis>
@@ -74,15 +70,12 @@ export default function RenderChart () {
   
   return (
     <div>
-      <div>
-          <Chart1/>                   
-            <p>Influence</p>          
-            <button onClick={handInc}>Better</button>
-            <button onClick={handNC}>Same</button>
-            <button onClick={handDec}>Worse</button>            
-            <button onClick={handleReset}>Reset</button>            
-            <button onClick={exportMultipleChartsToPdf}>Save</button>                   
-      </div>
+        <Charted className="custom-chart"/>                   
+          <button onClick={handIncrement}>Better</button>
+          <button onClick={handNoChange}>Same</button>
+          <button onClick={handDecrement}>Worse</button>            
+          <button onClick={handleReset}>Reset</button>            
+          <button onClick={handChartToPdf}>Save</button>                   
     </div>
   )
 }

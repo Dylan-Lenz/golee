@@ -10,37 +10,36 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
-        <li className="navButtons">
+        <li className="navBar-li-nav">
           {user ? (
             <li>
-              <Link to="/" > <b>HOME</b> </Link>
-              <Link to="/current" > <b>CURRENT</b> </Link>
-              <Link to="/add" > <b>ADD</b> </Link>
-              <Link to="/past" > <b>PAST</b> </Link>
+              <button onClick={() => navigate("/")}>HOME</button>
+              <button onClick={() => navigate("/current")}>CURRENT</button>
+              <button onClick={() => navigate("/past")}>PAST</button>
             </li>
           ) : (
             <li>
-              <Link to="/" > <b>HOME</b> </Link>
+              <button onClick={() => navigate("/")}>HOME</button>
             </li>
           )}
         </li>
-        <li className="navHeader">
+        <li className="navBar-li-hdr">
           <h1>
-          <Link to="/" > <b>golee</b> </Link>
+            <Link to="/" > <a className="navBar-a-hdr" >golee</a> </Link>
           </h1>
         </li>
-        <li className="navUsers">
+        <li>
           {user ? (
-            <p>{user.username}</p>
+            <p className="navBar-p-log">{user.username}</p>
           ) : (
             <button onClick={() => navigate("/register")}>Register</button>
           )}
         </li>
         <li>
           {user ? (
-            <button onClick={logoutUser}>Logout</button>
+            <button className="navBar-b-log" onClick={logoutUser}>Logout</button>
           ) : (
-            <button onClick={() => navigate("/login")}>Login</button>
+            <button className="navBar-b-log" onClick={() => navigate("/login")}>Login</button>
           )}
         </li>
       </ul>

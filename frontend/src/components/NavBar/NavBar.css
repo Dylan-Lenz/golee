@@ -1,35 +1,38 @@
-ul {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
+
+.navBar-a-hdr {
+  color: #324B4F;
+  position: relative;
+  left: 130%;
 }
 
-li {
-  font-size: 1.25rem;
-}
-
-.navBar {
-  background: steelblue;
-  box-shadow: 4px 2px 5px gray;
-  color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
+.navBar  {
+  background: #7BAEB7;
+  box-shadow: 4px 2px 5px #324B4F;
 }
 
 .navBar button {
   background: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 0.4rem 0.5rem;
+  border: 2px solid #7BAEB7;
+  color: #324B4F;
 }
 
 .navBar button:hover {
-  background: white;
-  color: steelblue;
+  background: #324B4F;
+  color: #7BAEB7;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.brand {
-  cursor: pointer;
-  font-size: 2rem;
+.navBar-li-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+}
+
+.navBar-p-log {
+  position: relative;
+  left: 275%;
+  top: 15%;
 }

@@ -3,19 +3,23 @@ import RenderChart from "../../components/Chart/Chart";
 // import RenderChart from "../../components/Chart/ChartV2.jsx";
 import Timer from "../../components/Timer/Timer";
 import '../CurrentGoalPage/CurrentGoalPage.css';
+import GoalForm from '../../components/GoalForm/GoalForm';
 
 
 const CurrentGoalPage = () => {
   
   return (
-    <div className='goalPage'>
-      <h1>CURRENT GOAL</h1>
-      <ul className="chartTime">
-          <li>
+    <div className='container'>
+      <h1 className='goalPage-hdr'>GOAL</h1>
+        <ul>
+          <li className='goalPage-li-tmr'>
+            <Timer/>
+          </li>
+          <li className='goalPage-d-chrt'>
             <RenderChart />
           </li>
-          <li>
-            <Timer />
+          <li className='goalPage-li-frm'>
+            <GoalForm/>
           </li>
         </ul>
     </div>

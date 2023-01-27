@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import './GoalForm.css'
 
 const GoalForm = () => {
     const [user, token] = useAuth();
@@ -39,8 +40,9 @@ const GoalForm = () => {
     };
 
     return (
+    <div className="container">
         <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Label>Add a Goal!</Form.Label>
+            <h3 className="setgoal-title">ADD A GOAL</h3>
             <Form.Group>
                 <Form.Control
                     type="text"
@@ -58,9 +60,10 @@ const GoalForm = () => {
                 />
             </Form.Group>
             <Button variant="info" type="submit">
-                Submit
+                Set Goal
             </Button>
         </Form>
+    </div>
     );
 };
 
