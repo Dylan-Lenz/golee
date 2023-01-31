@@ -3,5 +3,5 @@ from goal import views
 
 urlpatterns = [
     path ('goals/', views.goals),
-    path ('goals/<int:pk>/', views.goal)
+    path ('goals/<int:pk>/', views.goal_by_id)
 ]
