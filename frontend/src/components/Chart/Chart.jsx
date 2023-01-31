@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import jsPDF from "../../../package.json";
 import htmlToImage from "../../../package.json";
 import Highcharts from 'highcharts/highstock';
@@ -10,6 +11,7 @@ import '../Chart/Chart.css';
 export default function RenderChart () {
   
   const [arr, setArr] = useState([0]);
+  const navigate = useNavigate();
   let val = arr[arr.length-1];
 
   const handIncrement = (e) => {
@@ -30,6 +32,18 @@ export default function RenderChart () {
     let newVal = (val - 1);
     arr.push(newVal);
     setArr([...arr]);
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setArr([0]);
+  }
+
+  const handChartToPdf = (e) => {
+    e.preventDefault();
+    const doc = new jsPDF(Charted);
+    const img = htmlToImage.toPng(doc);
+    return doc.setImg(img, "PNG");
   }
 
   const Charted = () => (
@@ -62,7 +76,8 @@ export default function RenderChart () {
           <button onClick={handNoChange}>Same</button>
           <button onClick={handDecrement}>Worse</button>            
           <button onClick={handleReset}>Reset</button>            
-          <button onClick={handChartToPdf}>Save</button>                   
+          <button onClick={handChartToPdf}>Save</button>
+          <button onClick={() => navigate("/past")}>Done</button>                      
     </div>
   )
 }

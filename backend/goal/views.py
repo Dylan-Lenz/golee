@@ -7,7 +7,7 @@ from goal.serializers import GoalSerializer
 from goal.models import Goal
 
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET', 'POST', 'PUT'])
 @permission_classes([IsAuthenticated])
 def goals(request):
     if request.method == 'GET':
@@ -20,4 +20,15 @@ def goals(request):
             serializer.save(user_id=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-   
+    
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def goal(request, pk):
+    if request.method == 'PUT':
+        goal = get_object_or_404(Goal, pk=pk)
+        serializer = GoalSerializer(goal, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

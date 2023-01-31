@@ -10,7 +10,7 @@ const CurrentGoalPage = () => {
   
   return (
     <div className='container'>
-      <h1 className='goalPage-hdr'>GOAL</h1>
+      <h1 className='goalPage-hdr'>CURRENT GOAL</h1>
         <ul>
           <li className='goalPage-li-tmr'>
             <Timer/>
