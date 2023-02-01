@@ -23,6 +23,26 @@ const PastGoalPage = () => {
     };
     fetchGoals();
   }, [token]);
+
+  const deleteGoal = async () => {
+    try {
+      let response = await axios.delete("http://127.0.0.1:8000/api/user/goals/18/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        data:{
+          goal_name: 'test',
+          influence_name: 'test',
+          influence_value: '0',
+          user_id: user.id,
+        }
+      });
+      console.log('Success');
+      return response.data;
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
   
   return (
     <div className="container">
@@ -30,10 +50,18 @@ const PastGoalPage = () => {
       {goals &&
         goals.filter(goal=>(goal.is_current === false)
           ).map((goal) => (
-          <p key={goal.id}>
-            <p>{goal.goal_name}</p>
-            <p>{goal.influence_name}</p>
-          </p>
+          <div key={goal.id}>
+            <ul>
+              <li>
+                <p>{goal.goal_name}</p>
+              </li>
+              <li>
+                <p>{goal.influence_name}</p>
+              </li>
+              <button onClick={deleteGoal}>DELETE</button>
+              <button>Export</button>
+            </ul>
+          </div>
         ))}
     </div>
   );
