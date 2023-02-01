@@ -38,7 +38,7 @@ const GoalForm = () => {
         };
         postGoal(newGoal);
     };
-
+ 
     return (
     <div className="container">
         <Form onSubmit={(e) => handleSubmit(e)}>

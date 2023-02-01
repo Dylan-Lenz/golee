@@ -28,10 +28,11 @@ const PastGoalPage = () => {
     <div className="container">
       <h1>PAST GOALS</h1>
       {goals &&
-        goals.map((goals) => (
-          <p key={goals.id}>
-            <p>{goals.goal_name}</p>
-            <p>{goals.influence_name}</p>
+        goals.filter(goal=>(goal.is_current === false)
+          ).map((goal) => (
+          <p key={goal.id}>
+            <p>{goal.goal_name}</p>
+            <p>{goal.influence_name}</p>
           </p>
         ))}
     </div>

@@ -24,6 +24,6 @@ const CurrentGoalPage = () => {
         </ul>
     </div>
   );
-};
+}; 
 
 export default CurrentGoalPage;
