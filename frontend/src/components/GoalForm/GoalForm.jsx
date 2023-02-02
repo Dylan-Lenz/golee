@@ -29,7 +29,6 @@ const GoalForm = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         let newGoal = {
             goal_name: goalName,
             influence_name: influence,

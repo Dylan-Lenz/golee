@@ -26,7 +26,7 @@ const PastGoalPage = () => {
 
   const deleteGoal = async () => {
     try {
-      let response = await axios.delete("http://127.0.0.1:8000/api/user/goals/18/", {
+      let response = await axios.delete("http://127.0.0.1:8000/api/user/goals/19/", {
         headers: {
           Authorization: "Bearer " + token,
         },
