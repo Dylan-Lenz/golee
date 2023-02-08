@@ -1,6 +1,4 @@
-
-
-.counter {
+.tmr_row_ctr {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -9,20 +7,17 @@
     color: #7BAEB7;
     background-color: #324B4F;
     border-radius: 5px;
+    margin-top: .5em;
 }
 
-ul {
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    font-size: 1.25rem;
-    color: #324B4F;
-    background: transparent;
+.tmr-b {
+  margin-left: 2.5em;
+  margin-top: .5em;
+  margin-bottom: .5em;   
 }
 
 .react-datetime-picker__wrapper {
     background-color: #324B4F;
-    margin-bottom: 1em;
     border:none;
 }
 
@@ -37,10 +32,6 @@ ul {
 .react-datetime-picker__button__icon {
     color: #7BAEB7; 
 } 
-
-.counter-label {
-    border:none;
-}
 
 .counter-day-label {
     color: #7BAEB7; 

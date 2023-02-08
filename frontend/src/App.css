@@ -18,8 +18,13 @@ html {
   background-size: cover;
 }
 
-p {
-  font-size: 20px;
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 1.25rem;
+    color: #324B4F;
+    background: transparent;
 }
 
 button {
@@ -38,32 +43,8 @@ button:hover {
   background-color: #7BAEB7;
 }
 
-/* .container {
-  margin: 0 auto;
-  max-width: 600px;
-  overflow: auto;
-  text-align: center;
-} */
-
-.form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 1rem;
-}
-
-.form input {
-  display: block;
-  width: 100%;
-  height: 25px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-Footer {
+/* Footer {
   position: absolute;
   bottom: 0;
   width: 100%; 
-}
+} */

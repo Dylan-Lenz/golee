@@ -39,7 +39,7 @@ const GoalForm = () => {
     };
  
     return (
-    <div className="container">
+    <div className="frm_cont">
         <Form onSubmit={(e) => handleSubmit(e)}>
             <h3 className="setgoal-title">ADD A GOAL</h3>
             <Form.Group>
@@ -58,7 +58,7 @@ const GoalForm = () => {
                     placeholder="Influence"
                 />
             </Form.Group>
-            <Button variant="info" type="submit">
+            <Button className="frm_b" variant="info" type="submit">
                 Set Goal
             </Button>
         </Form>

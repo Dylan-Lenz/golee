@@ -3,3 +3,11 @@
 .custom-chart {
     margin:5em;
 }
+
+.b_col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: #2a2a2b;
+}

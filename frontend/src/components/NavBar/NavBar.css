@@ -16,6 +16,15 @@
   color: #324B4F;
 }
 
+.navBar ul {
+  display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 1.25rem;
+    color: #324B4F;
+    background: transparent;
+}
+
 .navBar button:hover {
   background: #324B4F;
   color: #7BAEB7;

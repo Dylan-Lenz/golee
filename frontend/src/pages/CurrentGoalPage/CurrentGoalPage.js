@@ -9,17 +9,19 @@ const CurrentGoalPage = () => {
 
   
   return (
-    <div className='container'>
-      <h1 className='goalPage-hdr'>CURRENT GOAL</h1>
-        <ul>
-          <li className='goalPage-li-tmr'>
-            <Timer/>
+    <div className='gp_cont'>
+      <h1 className='gp_hdr'>CURRENT GOAL</h1>
+        <ul className='gp_frm_tmr'>
+          <li >
+            <div className='gp_frm'>
+              <GoalForm/>
+            </div>
+            <div className='gp_tmr'>
+              <Timer/>
+            </div>
           </li>
-          <li className='goalPage-d-chrt'>
+          <li className='gp_chrt'>
             <RenderChart />
-          </li>
-          <li className='goalPage-li-frm'>
-            <GoalForm/>
           </li>
         </ul>
     </div>

@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import jsPDF from "../../../package.json";
-import htmlToImage from "../../../package.json";
 import Highcharts from 'highcharts/highstock';
 import {
   HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
@@ -15,8 +12,6 @@ export default function RenderChart () {
   const [user, token] = useAuth();
   const [arr, setArr] = useState([0]);
   const [goals, setGoals] = useState([]);
-  
-  const navigate = useNavigate();
   const val = arr[arr.length-1];
 
   useEffect(() => {
@@ -33,7 +28,27 @@ export default function RenderChart () {
       }
     };
     fetchGoals();
-  }, []);
+  }, [token]);
+
+  // const handlePastGoal = (e) => {
+  //   e.preventDefault();
+  //   let pastGoal = {}
+    
+  //   goals && 
+  //     goals.filter((goal)=>(goal.is_current === true)
+  //     ).map((goal) => (
+  //       {
+  //         id: goal.id,
+  //         goal_name: goal.goal_name,
+  //         influence_name: goal.influence_name,
+  //         influence_value: goal.influence_value,
+  //         is_current: false,
+  //         user_id: user.id,
+  //       }
+  //     ))
+  //   console.log(pastGoal);
+  // };
+  
 
   const handIncrement = (e) => {
     e.preventDefault();
@@ -58,13 +73,6 @@ export default function RenderChart () {
   const handleReset = (e) => {
     e.preventDefault();
     setArr([0]);
-  }
-
-  const handChartToPdf = (e) => {
-    e.preventDefault();
-    const doc = new jsPDF(Charted);
-    const img = htmlToImage.toPng(doc);
-    return doc.setImg(img, "PNG");
   }
 
   const Charted = () => (
@@ -107,14 +115,21 @@ export default function RenderChart () {
   );
   
   return (
-    <div>
-        <Charted className="custom-chart"/>                   
+    <div >
+      <ul className="chrt_cont">
+        <li className="chrt_col">
+          <Charted/>
+        </li>
+        <li className="b_col">
           <button onClick={handIncrement}>Better</button>
           <button onClick={handNoChange}>Same</button>
-          <button onClick={handDecrement}>Worse</button>            
+          <button onClick={handDecrement}>Worse</button>       
           <button onClick={handleReset}>Reset</button>            
-          <button onClick={handChartToPdf}>Save</button>
-          <button onClick={() => navigate("/past")}>Done</button>                      
+          <button>Save</button>
+          <button>Done</button>                    
+        </li>
+      </ul>        
     </div>
   )
 }
+

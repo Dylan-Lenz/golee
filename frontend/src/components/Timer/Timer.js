@@ -76,35 +76,35 @@ export default class Timer extends React.Component {
     const convertedSeconds = this.getTwoDigitValue(seconds);
 
     return (
-      <div className="container">
-        <div className="counter">
-          <h3>TIME</h3>
-          <ul className="counter-label">
+      <div className="tmr_cont">
+        <div className="tmr_row_ctr">
+          <h3 className="tmr_hdr">TIME</h3>
+          <ul className="tmr_row_ctr">
             <li>
-              <h5 className="counter-day-label">Days: {convertedDays}&nbsp;</h5> 
+              <h5 className="tmr_col_dys">Days: {convertedDays}&nbsp;</h5> 
             </li>
             <li>
-              <h5 className="counter-hour-label">Hrs: {convertedHours}&nbsp;</h5>
+              <h5 className="tmr_col_hrs">Hrs: {convertedHours}&nbsp;</h5>
             </li>
             <li> 
-              <h5 className="counter-minute-label">Mins: {convertedMins}&nbsp;</h5>
+              <h5 className="tmr_col_min">Mins: {convertedMins}&nbsp;</h5>
             </li>
             <li>
-              <h5 className="counter-second-label">Secs: {convertedSeconds}&nbsp;</h5> 
+              <h5 className="tmr_col_secs">Secs: {convertedSeconds}&nbsp;</h5> 
             </li>
           </ul>
         </div>
-      <div className="counter-datetime">
+      <div className="tmr_row_dt">
           <Form>
             <Form.Group controlId="end_date">
               <DateTimePicker
-                format="dd/MM/y h:mm:ss a"
+                format="h:mm a"
                 onChange={this.onEndDateChange}
                 value={this.state.endDate}
               />
             </Form.Group>
             <button
-              className="counter-button"
+              className="tmr-b"
               variant="primary"
               type="button"
               onClick={this.calculateCountdown}

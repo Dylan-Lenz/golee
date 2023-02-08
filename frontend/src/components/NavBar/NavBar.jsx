@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
-        <li className="navBar-li-nav">
+        <div className="navBar-li-nav">
           {user ? (
             <li>
               <button onClick={() => navigate("/")}>HOME</button>
@@ -22,12 +22,12 @@ const Navbar = () => {
               <button onClick={() => navigate("/")}>HOME</button>
             </li>
           )}
-        </li>
-        <li className="navBar-li-hdr">
+        </div>
+        <div className="navBar-li-hdr">
           <h1>
-            <Link to="/" > <a className="navBar-a-hdr" >golee</a> </Link>
+            <Link className="navBar-a-hdr" to="/" > golee </Link>
           </h1>
-        </li>
+        </div>
         <li>
           {user ? (
             <p className="navBar-p-log">{user.username}</p>

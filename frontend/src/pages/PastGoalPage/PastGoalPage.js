@@ -7,7 +7,7 @@ import axios from "axios";
 const PastGoalPage = () => {
   const [user, token] = useAuth();
   const [goals, setGoals] = useState([]);
-
+  
   useEffect(() => {
     const fetchGoals = async () => {
       try {
@@ -22,49 +22,56 @@ const PastGoalPage = () => {
       }
     };
     fetchGoals();
-  }, [token]);
+  }, [goals]);
 
-  const deleteGoal = async () => {
+  const handleDelete = async (id) => {
     try {
-      let response = await axios.delete("http://127.0.0.1:8000/api/user/goals/19/", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        data:{
-          goal_name: 'test',
-          influence_name: 'test',
-          influence_value: '0',
-          user_id: user.id,
+        let response = await axios.delete(`http://127.0.0.1:8000/api/user/goals/${id}/`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          data: {
+            id: id,
+            goal_name: 'text',
+            influence_name: 'text',
+            influence_value: 0,
+            user_id: user.id,
+          }
         }
-      });
-      console.log('Success');
-      return response.data;
+      );
+      setGoals(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error.response.data);
     }
   };
-  
+
   return (
     <div className="container">
       <h1>PAST GOALS</h1>
-      {goals &&
-        goals.filter(goal=>(goal.is_current === false)
-          ).map((goal) => (
-          <div key={goal.id}>
-            <ul>
-              <li>
-                <p>{goal.goal_name}</p>
-              </li>
-              <li>
-                <p>{goal.influence_name}</p>
-              </li>
-              <button onClick={deleteGoal}>DELETE</button>
-              <button>Export</button>
-            </ul>
-          </div>
-        ))}
+          <table >
+            <thead>
+              <tr>
+                <th><h3>Name</h3></th>
+                <th><h3>Influence</h3></th>
+              </tr>
+            </thead>
+            {goals && goals.filter(goal=>(goal.is_current === false)
+            ).map((goal) => (
+            <tbody key={goal.id}>
+              <tr>
+                <td><p>{goal.goal_name}</p></td>
+                <td><p>{goal.influence_name}</p></td>
+                <td><button onClick={() => handleDelete(goal.id)}>DELETE</button></td>
+                <td><button >PDF</button></td>
+              </tr>
+            </tbody>
+              ))}
+          </table>
     </div>
   );
 };
 
 export default PastGoalPage;
+
+

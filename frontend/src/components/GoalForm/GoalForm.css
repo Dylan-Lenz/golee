@@ -4,10 +4,25 @@
     background-color: #324B4F;
     border-radius: 5px;  
     text-align: center;
+    margin-top: .75em;
+}
+
+.frm_b {
+    margin-left: 2.75em;
+    margin-top: .5em;
 }
 
 .form-control {
     color: #7BAEB7;
     background-color: #324B4F;
     margin-bottom: .5em;
+}
+
+.frm_cont {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    font-size: 1.25rem;
+    color: #324B4F;
+    background: transparent;
 }
