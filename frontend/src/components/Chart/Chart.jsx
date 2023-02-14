@@ -21,7 +21,7 @@ export default function RenderChart () {
   const [id, setId] = useState();
 
   useEffect(() => {
-    fetchGoals(); 
+    fetchGoals();
   }, [current]);
 
   const fetchGoals = async () => { 
@@ -53,10 +53,32 @@ export default function RenderChart () {
     is_current: false,
     user_id: user.id, 
   }
+
+  let currentInfluence = {
+    goal_name: current.goal_name,
+    influence_name: current.influence_name, 
+    influence_value: parseInt(val),
+    is_current: current.is_current,
+    user_id: user.id, 
+  }
    
   const updateGoal = async () => {
     try {
         let response = await axios.put(`http://127.0.0.1:8000/api/user/goals/${id}/`, pastGoal,{
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
+  const updateInfluence = async () => {
+    try {
+        let response = await axios.put(`http://127.0.0.1:8000/api/user/goals/${id}/`, currentInfluence,{
           headers: {
             Authorization: "Bearer " + token,
           },
@@ -75,8 +97,9 @@ export default function RenderChart () {
   }
 
   const handleSave = (e) => { 
-    e.preventDefault(); 
+    e.preventDefault();
     currentGoal();
+    updateInfluence();
   };
 
   const handIncrement = (e) => {

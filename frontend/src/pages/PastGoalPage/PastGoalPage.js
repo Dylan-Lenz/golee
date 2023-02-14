@@ -55,6 +55,7 @@ const PastGoalPage = () => {
               <tr>
                 <th><h3>Name</h3></th>
                 <th><h3>Influence</h3></th>
+                <th><h3>Value</h3></th>
               </tr>
             </thead>
             {goals && goals.filter((goal)=>(goal.is_current === false)
@@ -63,6 +64,7 @@ const PastGoalPage = () => {
                 <tr>
                   <td><p>{goal.goal_name}</p></td>
                   <td><p>{goal.influence_name}</p></td>
+                  <td><p>{goal.influence_value}</p></td>
                   <td><button onClick={() => handleDelete(goal.id)}>DELETE</button></td>
                   <td><button >PDF</button></td>
                 </tr>
