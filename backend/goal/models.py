@@ -7,4 +7,4 @@ class Goal(models.Model):
      goal_name = models.CharField(max_length=50)
      influence_name = models.CharField(max_length=50)
      influence_value = models.IntegerField()
-     is_current = models.BooleanField('current goal', default=False)
+     is_current = models.BooleanField('current goal', default=True)

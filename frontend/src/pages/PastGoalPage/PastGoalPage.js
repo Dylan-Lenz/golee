@@ -5,25 +5,27 @@ import axios from "axios";
 
 
 const PastGoalPage = () => {
+  
   const [user, token] = useAuth();
   const [goals, setGoals] = useState([]);
   
   useEffect(() => {
-    const fetchGoals = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/user/goals/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setGoals(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
     fetchGoals();
   }, [goals]);
 
+  const fetchGoals = async () => {
+    try {
+      let response = await axios.get("http://127.0.0.1:8000/api/user/goals/", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      setGoals(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  
   const handleDelete = async (id) => {
     try {
         let response = await axios.delete(`http://127.0.0.1:8000/api/user/goals/${id}/`, {
@@ -40,7 +42,6 @@ const PastGoalPage = () => {
         }
       );
       setGoals(response.data);
-      console.log(response.data);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -56,16 +57,16 @@ const PastGoalPage = () => {
                 <th><h3>Influence</h3></th>
               </tr>
             </thead>
-            {goals && goals.filter(goal=>(goal.is_current === false)
+            {goals && goals.filter((goal)=>(goal.is_current === false)
             ).map((goal) => (
-            <tbody key={goal.id}>
-              <tr>
-                <td><p>{goal.goal_name}</p></td>
-                <td><p>{goal.influence_name}</p></td>
-                <td><button onClick={() => handleDelete(goal.id)}>DELETE</button></td>
-                <td><button >PDF</button></td>
-              </tr>
-            </tbody>
+              <tbody key={goal.id}>
+                <tr>
+                  <td><p>{goal.goal_name}</p></td>
+                  <td><p>{goal.influence_name}</p></td>
+                  <td><button onClick={() => handleDelete(goal.id)}>DELETE</button></td>
+                  <td><button >PDF</button></td>
+                </tr>
+              </tbody>
               ))}
           </table>
     </div>
