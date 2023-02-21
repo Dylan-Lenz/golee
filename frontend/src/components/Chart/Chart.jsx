@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Highcharts from 'highcharts/highstock';
-import {
-  HighchartsProvider, HighchartsChart, Chart, XAxis, YAxis, Title, Legend, LineSeries
-} from 'react-jsx-highcharts';
-import '../Chart/Chart.css';
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import '../Chart/Chart.css';
+
+import Highcharts from 'highcharts/highstock';
+import HighchartsReact from "highcharts-react-official";
+
+import exporting from "highcharts/modules/exporting";
+import exportData from "highcharts/modules/export-data";
+exporting(Highcharts);
+exportData(Highcharts);
 
 export default function RenderChart () {
   
@@ -127,50 +131,59 @@ export default function RenderChart () {
     setArr([0]);
   }
 
-  const Charted = () => (
-    <div>
-      <HighchartsProvider Highcharts={Highcharts}>
-        <HighchartsChart styledMode>
-          <Chart/>
-            {goals &&
-              goals.filter(goal=>(goal.is_current === true)
-                ).map((goal) => (
-                  <div key={goal.id}>
-                    <Title>{goal.goal_name}</Title>
-                  </div>
-                )
-              )
-            }
-            <Legend 
-              layout="horizontal" 
-              align="center" 
-              verticalAlign="top" 
-            />
-          <XAxis></XAxis>
-          <YAxis>
-            {goals &&
-              goals.filter(goal=>(goal.is_current === true)
-                ).map((goal) => (
-                  <div key={goal.id}>
-                    <LineSeries
-                      name= {goal.influence_name}
-                      data={arr}
-                    />
-                  </div>
-                ) 
-              )
-            }
-          </YAxis>
-        </HighchartsChart>
-      </HighchartsProvider>
-    </div>
-  );
+  let title = goals &&
+    goals.filter(goal=>(goal.is_current === true)
+    ).map((goal) => (goal.goal_name))
+
+  let influence = goals &&
+    goals.filter(goal=>(goal.is_current === true)
+      ).map((goal) => (goal.influence_name))
+
+  const options = {
+    chart: {
+      backgroundColor: "#2a2a2b",
+      type: "line",
+      height: "400em",
+    },
+    legend: {
+      layout: "horizontal" ,
+      align: "center" ,
+      verticalAlign: "top" ,
+    },
+    styledMode: false,
+    title: {
+      text: `<h1 id="chart-title">${title}</h1>`,
+      align: "center",
+      style: {
+        color: '#7BAEB7'
+      }
+    },
+    yAxis: {
+      title: false
+    },
+    series: [
+      {
+        name: influence,
+        data: arr,
+        tooltip: {
+          valueDecimals: 1,
+          backgroundColor: '#2a2a2b',
+          borderColor: 'black',
+          borderRadius: 10,
+          borderWidth: 3
+        },
+      },
+    ],
+  };
   
   return (
     <div >
       <ul className="chrt_cont">
         <li className="chrt_col">
-          <Charted/>
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}>
+          </HighchartsReact>
         </li>
         <li className="b_col">
           <button onClick={(e)=>handIncrement(e)}>Better</button>
@@ -178,10 +191,9 @@ export default function RenderChart () {
           <button onClick={(e)=>handDecrement(e)}>Worse</button>       
           <button onClick={(e)=>handleReset(e)}>Reset</button>            
           <button onClick={(e)=>handleSave(e)}>Save</button>
-          <button  onClick={(e)=>handleDone(e)}>Done</button>                    
+          <button onClick={(e)=>handleDone(e)}>Done</button>                   
         </li>
       </ul>        
     </div>
   )
 }
-

@@ -66,7 +66,6 @@ const PastGoalPage = () => {
                   <td><p>{goal.influence_name}</p></td>
                   <td><p>{goal.influence_value}</p></td>
                   <td><button onClick={() => handleDelete(goal.id)}>DELETE</button></td>
-                  <td><button >PDF</button></td>
                 </tr>
               </tbody>
               ))}
