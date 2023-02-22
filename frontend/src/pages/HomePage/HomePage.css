@@ -38,8 +38,17 @@
     align-content: flex-end;
 }
 
+.hp_nav_hdr {
+    padding: .5em;
+}
+
 .hp_nav_b {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end; 
+    padding : .25em;
+}
+
+.hp_nav_b_log {
+    margin-right: 1em;
 }

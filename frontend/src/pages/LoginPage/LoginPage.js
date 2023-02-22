@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 const LoginPage = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
   const defaultValues = { username: "", password: "" };
+  const navigate = useNavigate();
   const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
     defaultValues,
     loginUser
@@ -20,8 +21,9 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+      <h1 className="lg_hdr">LOGIN</h1>
       <form className="form" onSubmit={handleSubmit}>
-        <label>
+        <label className="lg_lb_user">
           Username:{" "}
           <input
             type="text"
@@ -42,8 +44,10 @@ const LoginPage = () => {
         {isServerError ? (
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
-        <Link to="/register">Click to register!</Link>
-        <button>Login!</button>
+        <div className="lg_b">
+          <button onClick={() => navigate("/register")}>Register</button>
+          <button>Login</button>
+        </div>
       </form>
     </div>
   );

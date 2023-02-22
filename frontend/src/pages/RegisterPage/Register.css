@@ -1,0 +1,10 @@
+.rg_hdr {
+    border: 2px solid #7BAEB7;
+    text-align: center;
+    color: #7BAEB7;
+    background-color: #324B4F;
+    border-radius: 5px; 
+    padding: 0.25em;
+    margin:1em;
+    opacity: 0.8; 
+}

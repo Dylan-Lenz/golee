@@ -22,7 +22,7 @@ const HomePage = () => {
             <h3 className="hp_nav_hdr">Login or Register to Begin...</h3>
           </div>
           <div className="hp_nav_b">
-            <button onClick={() => navigate("/login")} >Login</button>
+            <button className="hp_nav_b_log" onClick={() => navigate("/login")} >Login</button>
             <button onClick={() => navigate("/register")}>Register</button>
           </div>
         </div>
