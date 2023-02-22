@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import RenderChart from "../../components/Chart/Chart";
 import Timer from "../../components/Timer/Timer";
 import '../CurrentGoalPage/CurrentGoalPage.css';
