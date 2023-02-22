@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-
+import '../PastGoalPage/PastGoalPage.css';
 
 const PastGoalPage = () => {
   
@@ -48,14 +48,15 @@ const PastGoalPage = () => {
   };
 
   return (
-    <div className="container">
-      <h1>PAST GOALS</h1>
-          <table >
-            <thead>
-              <tr>
-                <th><h3>Name</h3></th>
-                <th><h3>Influence</h3></th>
-                <th><h3>Value</h3></th>
+    <div className="wrapper">
+      <h1 className="pgp_hdr">PAST GOALS</h1>
+          <table className="pgp_tbl">
+            <thead className="pgp_tbl_hd">
+              <tr className="pgp_tbl_hd_tr">
+                <th><h2>GOAL</h2></th>
+                <th><h2>INFLUENCE</h2></th>
+                <th><h2>TOTAL</h2></th>
+                <th><h2>DELETE</h2></th>
               </tr>
             </thead>
             {goals && goals.filter((goal)=>(goal.is_current === false)

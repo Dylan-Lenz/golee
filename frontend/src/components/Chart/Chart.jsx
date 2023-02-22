@@ -140,6 +140,7 @@ export default function RenderChart () {
       ).map((goal) => (goal.influence_name))
 
   const options = {
+    styledMode: true,
     chart: {
       backgroundColor: "#2a2a2b",
       type: "line",
@@ -149,13 +150,15 @@ export default function RenderChart () {
       layout: "horizontal" ,
       align: "center" ,
       verticalAlign: "top" ,
+      itemStyle: {
+        color: '#7BAEB7'
+      },
     },
-    styledMode: false,
     title: {
       text: `<h1 id="chart-title">${title}</h1>`,
       align: "center",
       style: {
-        color: '#7BAEB7'
+        color: '#7BAEB7',
       }
     },
     yAxis: {
